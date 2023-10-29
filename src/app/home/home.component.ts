@@ -1,14 +1,10 @@
 import { Component } from '@angular/core';
 
 @Component({
+  standalone: true,
   selector: 'app-home',
-  template: `
-    <p>
-      home works!
-    </p>
-  `,
+  templateUrl: './home.component.html',
   styleUrls: ['./home.component.css']
 })
 export class HomeComponent {
-
 }
