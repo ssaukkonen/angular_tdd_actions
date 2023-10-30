@@ -30,4 +30,9 @@ describe('HomeComponent', () => {
     const title = fixture.debugElement.query(By.css('button')).nativeElement;
     expect(title.innerHTML).toBeTruthy;
   });
+
+  it('should have correct text in grid', () => {
+    const grid = fixture.debugElement.query(By.css('mat-grid-list')).nativeElement;
+    expect(grid.innerText).withContext("Martta\nAge: 3, Color: Gray\nPaavo\nAge: 3, Color: Orange");
+  });
 });
