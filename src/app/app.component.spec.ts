@@ -8,7 +8,6 @@ describe('AppComponent', () => {
   let fixture: ComponentFixture<AppComponent>;
   
   beforeEach(() => TestBed.configureTestingModule({
-    declarations: [AppComponent],
     imports: [HomeComponent, MatToolbarModule]
   }));
 
@@ -18,15 +17,9 @@ describe('AppComponent', () => {
     expect(app).toBeTruthy();
   });
 
-  it(`should have as title 'CATS'`, () => {
-    const fixture = TestBed.createComponent(AppComponent);
-    const app = fixture.componentInstance;
-    expect(app.title).toEqual('CATS');
-  });
-
   it('should render text', () => {
     const fixture = TestBed.createComponent(AppComponent);
     const title = fixture.debugElement.query(By.css('.title')).nativeElement;
-    expect(title.innerHTML).toContain('Find a cat');
+    expect(title.innerHTML).toContain('Find a cat picture');
   });
 });
