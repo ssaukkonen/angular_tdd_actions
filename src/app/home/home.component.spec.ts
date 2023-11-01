@@ -31,8 +31,40 @@ describe('HomeComponent', () => {
     expect(title.innerHTML).toBeTruthy;
   });
 
-  it('should have correct text in grid', () => {
+  it('should have correct text in html', () => {
     const grid = fixture.debugElement.query(By.css('mat-grid-list')).nativeElement;
     expect(grid.innerText).withContext("Martta\nAge: 3, Color: Gray\nPaavo\nAge: 3, Color: Orange");
   });
+
+  it('should filter list when new filter matches', () => {
+    expect(component.filteredCatsList).toEqual(component.catDisplayList);
+    component.filterResults("Martta");
+    expect(component.filteredCatsList).not.toEqual(component.catDisplayList);
+  });
+
+  it('should filter html when new filter clicked', () => {
+    const grid = fixture.debugElement.query(By.css('mat-grid-list')).nativeElement;
+    expect(grid.innerText).withContext("Martta\nAge: 3, Color: Gray\nPaavo\nAge: 3, Color: Orange");
+    const input = fixture.debugElement.query(By.css('input'));
+    input.nativeElement.value = "Martta";
+    const button = fixture.debugElement.query(By.css('button'));
+    button.triggerEventHandler("click");
+    fixture.detectChanges();
+    const gridAfter = fixture.debugElement.query(By.css('mat-grid-list')).nativeElement;
+    expect(gridAfter.innerText).not.withContext("Martta\nAge: 3, Color: Gray\nPaavo\nAge: 3, Color: Orange");
+    expect(gridAfter.innerText).withContext("Martta\nAge: 3, Color: Gray");
+  });
+
+  it('should filter html when new filter and enter pressed', () => {
+    const grid = fixture.debugElement.query(By.css('mat-grid-list')).nativeElement;
+    expect(grid.innerText).withContext("Martta\nAge: 3, Color: Gray\nPaavo\nAge: 3, Color: Orange");
+    const input = fixture.debugElement.query(By.css('input'));
+    input.nativeElement.value = "Martta";
+    input.nativeElement.dispatchEvent(new KeyboardEvent('keydown', { key: 'Enter' }));
+    fixture.detectChanges();
+    const gridAfter = fixture.debugElement.query(By.css('mat-grid-list')).nativeElement;
+    expect(gridAfter.innerText).not.withContext("Martta\nAge: 3, Color: Gray\nPaavo\nAge: 3, Color: Orange");
+    expect(gridAfter.innerText).withContext("Martta\nAge: 3, Color: Gray");
+  });
+
 });

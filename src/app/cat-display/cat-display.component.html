@@ -6,6 +6,6 @@
         </mat-card-title-group>
     </mat-card-header>
     <img mat-card-image [src]="catDisplay.photo">
-    <a [routerLink]="['/details', catDisplay.id]">More information about {{catDisplay.name}}</a>
+    <a mat-button [routerLink]="['/details', catDisplay.id]">More information about {{catDisplay.name}}</a>
 </mat-card>
 <mat-card-footer></mat-card-footer>

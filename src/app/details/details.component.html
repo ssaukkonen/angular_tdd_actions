@@ -7,7 +7,6 @@
     <mat-card-subtitle>Age: {{ catDisplay?.age}}, Color: {{catDisplay?.color }}</mat-card-subtitle>
     <img mat-card-image [src]="catDisplay?.photo">
     <mat-card-subtitle>{{ catDisplay?.details}}</mat-card-subtitle>
-    <mat-card-footer>
-        <a [routerLink]="['/']">Home</a>
-    </mat-card-footer>
+    <a mat-button [routerLink]="['/']">Home</a>
+    <mat-card-footer></mat-card-footer>
 </mat-card>

@@ -25,7 +25,19 @@ import { CatsService } from '../cats.service';
 export class HomeComponent {
   catDisplayList: CatDisplay[] =[];
   catsService: CatsService = inject(CatsService)
+  filteredCatsList: CatDisplay[] = [];
   constructor() {
     this.catDisplayList = this.catsService.getAllCatDisplays();
+    this.filteredCatsList = this.catDisplayList;
+  }
+
+  filterResults(text: string) {
+    if (!text) {
+      this.filteredCatsList = this.catDisplayList;
+    }
+  
+    this.filteredCatsList = this.catDisplayList.filter(
+      catDisplay => catDisplay?.name.toLowerCase().includes(text.toLowerCase())
+    );
   }
 }
