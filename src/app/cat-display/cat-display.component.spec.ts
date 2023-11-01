@@ -1,10 +1,10 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-
 import { CatDisplayComponent } from './cat-display.component';
 import { By } from '@angular/platform-browser';
 import { DebugElement } from '@angular/core';
 import { CatDisplay } from '../catdisplay';
 import { HomeComponent } from '../home/home.component';
+import { RouterTestingModule } from "@angular/router/testing";
 
 describe('CatDisplayComponent', () => {
   let component: CatDisplayComponent;
@@ -15,13 +15,11 @@ describe('CatDisplayComponent', () => {
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      imports: [CatDisplayComponent, HomeComponent]
+      imports: [CatDisplayComponent, HomeComponent, RouterTestingModule]
     });
     fixture = TestBed.createComponent(CatDisplayComponent);
     component = fixture.componentInstance;
-    // catDisplayDe = fixture.debugElement.query(By.css('.catDisplay'));
-    // catDisplayEl = catDisplayDe.nativeElement;
-    expectedCatDisplay = {name: "TestCat", color: "Red", age: 2, photo: "localhost"};
+    expectedCatDisplay = {id: 0, name: "TestCat", color: "Red", age: 2, photo: "localhost", details: "text"};
     component.catDisplay = expectedCatDisplay;
     fixture.detectChanges();
   });
@@ -48,9 +46,13 @@ describe('CatDisplayComponent', () => {
     const expectedColor = expectedCatDisplay.color;
     const expectedAge = expectedCatDisplay.age.toString();
     const expectedPhoto = expectedCatDisplay.photo;
+    const expectedDetails = expectedCatDisplay.details;
+    const expectedText = "More information about TestCat"
     expect(catDisplayEl.innerHTML).withContext(expectedName);
     expect(catDisplayEl.innerHTML).withContext(expectedColor);
     expect(catDisplayEl.innerHTML).withContext(expectedAge);
     expect(catDisplayEl.innerHTML).withContext(expectedPhoto);
+    expect(catDisplayEl.innerHTML).withContext(expectedDetails);
+    expect(catDisplayEl.innerHTML).withContext(expectedText);
   });
 });

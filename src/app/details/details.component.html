@@ -1,0 +1,13 @@
+<mat-card class="cat-card-max">
+    <mat-card-header>
+        <mat-card-title-group>
+            <mat-card-title>{{ catDisplay?.name }}</mat-card-title>
+        </mat-card-title-group>
+    </mat-card-header>
+    <mat-card-subtitle>Age: {{ catDisplay?.age}}, Color: {{catDisplay?.color }}</mat-card-subtitle>
+    <img mat-card-image [src]="catDisplay?.photo">
+    <mat-card-subtitle>{{ catDisplay?.details}}</mat-card-subtitle>
+    <mat-card-footer>
+        <a [routerLink]="['/']">Home</a>
+    </mat-card-footer>
+</mat-card>
